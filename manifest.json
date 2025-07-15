@@ -1,0 +1,22 @@
+{
+  "name": "Jejak Ilmu: Mekar Bersama Pengetahuan",
+  "short_name": "Jejak Ilmu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF0F3",
+  "theme_color": "#D8BFD8",
+  "description": "Aplikasi jadwal belajar pribadi dengan tema bunga pastel untuk persiapan ujian SMA.",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
