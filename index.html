@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jejak Ilmu: Mekar Bersama Pengetahuan</title>
+    <!-- Link ke manifest.json -->
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        /* Gaya CSS untuk tema feminim pastel dan responsif */
+        :root {
+            --primary-bg: #FDF0F3; /* Sangat lembut, peach-pink */
+            --secondary-bg: #FFF5EE; /* Seashell - latar belakang kartu/konten */
+            --accent-color-1: #FFB6C1; /* LightPink - untuk border/highlight/judul */
+            --accent-color-2: #D8BFD8; /* Thistle - lavender lembut untuk header */
+            --text-color-dark: #4A4A4A; /* Abu-abu gelap lembut */
+            --text-color-light: #888888; /* Abu-abu sedang */
+            --checkbox-checked: #A2E8A2; /* Hijau pastel lembut */
+            --border-color: #E0E0E0; /* Abu-abu sangat terang */
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: radial-gradient(circle at top left, var(--primary-bg) 0%, #FDF5E6 70%, #F5F5DC 100%); /* Gradien bunga lembut */
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: var(--secondary-bg);
+            border-radius: 20px; /* Lebih membulat */
+            box-shadow: 0 10px 25px var(--shadow-color);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            border: 1px solid var(--accent-color-1); /* Border lembut */
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color-1); /* Judul utama pink lembut */
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Bayangan teks lembut */
+        }
+
+        h1 {
+            font-size: 2.8em;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--accent-color-2); /* Garis bawah lavender */
+            padding-bottom: 12px;
+            margin-top: 35px;
+            color: var(--accent-color-2); /* Judul sub-bagian lavender */
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--text-color-dark);
+            margin-top: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px; /* Spasi antar baris */
+            margin-top: 25px;
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            border: none; /* Hilangkan border individu */
+            background-color: rgba(255, 255, 255, 0.9); /* Latar belakang sel */
+            border-radius: 10px; /* Sudut membulat pada sel */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Bayangan lembut pada sel */
+        }
+
+        th {
+            background-color: var(--accent-color-2);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 10px; /* Pastikan header juga bulat */
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transform: translateY(-3px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .task-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--accent-color-1);
+            border-radius: 8px; /* Lebih membulat */
+            outline: none;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Bayangan dalam */
+        }
+
+        .task-checkbox:hover {
+            transform: scale(1.05);
+        }
+
+        .task-checkbox:checked {
+            background-color: var(--checkbox-checked);
+            border-color: var(--checkbox-checked);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px var(--checkbox-checked); /* Efek cahaya */
+        }
+
+        .task-checkbox:checked::before {
+            content: '✔'; /* Menggunakan karakter Unicode sebagai ikon centang */
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-color-dark);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.7em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                margin-bottom: 20px;
+                border: none; /* Hilangkan border utama baris */
+                border-radius: 15px;
+                box-shadow: 0 5px 15px var(--shadow-color);
+                padding: 15px; /* Padding untuk kartu di mobile */
+            }
+            td {
+                border: none;
+                border-bottom: 1px dashed var(--border-color); /* Garis putus-putus */
+                position: relative;
+                padding-left: 55%; /* Ruang untuk label */
+                text-align: right;
+                background-color: transparent; /* Transparan agar kartu terlihat */
+                box-shadow: none; /* Hilangkan bayangan sel individu di mobile */
+            }
+            td:last-child {
+                border-bottom: none;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--text-color-light);
+            }
+            .checkbox-container {
+                justify-content: flex-end;
+                margin-top: 10px; /* Spasi di bawah label di mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jejak Ilmu: Mekar Bersama Pengetahuan</h1>
+        <p style="text-align: center; font-style: italic; color: var(--text-color-light);">Petualangan Belajar 3 Bulan Menuju Sukses Ujian!</p>
+        <p style="text-align: center; font-weight: bold; color: var(--accent-color-2);">Ujian Penentu: Hari ke-3 Bulan ke-4</p>
+        <p style="text-align: center; font-size: 0.9em; color: var(--text-color-light);">
+            *Penting: Rencana ini adalah panduan. Sesuaikan contoh materi spesifik ini dengan kurikulum sekolahmu dan fokus pada area yang kamu rasa paling perlu penguatan.*
+        </p>
+
+        <h2>Bulan ke-1: Fondasi Kelas 10 & Pengantar Ilmu Pengetahuan</h2>
+        <h3>Tujuan: Mengokohkan dasar-dasar dari Kelas 10 untuk pondasi yang kuat.</h3>
+        <h3>Pola Umum: Pembelajaran bergantian mata pelajaran.</h3>
+        <table id="month1-schedule">
+            <thead>
+                <tr>
+                    <th>Hari</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Tingkat Kelas</th>
+                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Catatan/Latihan</th>
+                    <th>Selesai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan diisi oleh JavaScript -->
+            </tbody>
+        </table>
+
+        <h2>Bulan ke-2: Pendalaman Kelas 11 & Aplikasi Konsep</h2>
+        <h3>Tujuan: Mendalami materi Kelas 11, memahami aplikasi konsep, dan mulai mengerjakan soal yang lebih kompleks.</h3>
+        <h3>Pola Umum: Pembelajaran bergantian mata pelajaran, fokus pada studi kasus dan soal aplikasi.</h3>
+        <table id="month2-schedule">
+            <thead>
+                <tr>
+                    <th>Hari</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Tingkat Kelas</th>
+                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Catatan/Latihan</th>
+                    <th>Selesai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan diisi oleh JavaScript -->
+            </tbody>
+        </table>
+
+        <h2>Bulan ke-3: Penguasaan Kelas 12 & Pemantapan Seluruh Materi</h2>
+        <h3>Tujuan: Menguasai materi Kelas 12, mengisi celah pemahaman dari semua tingkatan, dan latihan soal tingkat tinggi/simulasi ujian.</h3>
+        <h3>Pola Umum: Fokus pada materi sulit, latihan soal campuran, dan review menyeluruh.</h3>
+        <table id="month3-schedule">
+            <thead>
+                <tr>
+                    <th>Hari</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Tingkat Kelas</th>
+                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Catatan/Latihan</th>
+                    <th>Selesai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan diisi oleh JavaScript -->
+            </tbody>
+        </table>
+
+        <h2>Bulan ke-4: Ujian!</h2>
+        <table id="month4-schedule">
+            <thead>
+                <tr>
+                    <th>Hari</th>
+                    <th>Kegiatan</th>
+                    <th>Selesai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hari">Hari 1</td>
+                    <td data-label="Kegiatan">Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline).</td>
+                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d1"></td>
+                </tr>
+                <tr>
+                    <td data-label="Hari">Hari 2</td>
+                    <td data-label="Kegiatan">Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline).</td>
+                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d2"></td>
+                </tr>
+                <tr>
+                    <td data-label="Hari">Hari 3</td>
+                    <td data-label="Kegiatan">**Ujian!** Lakukan yang terbaik! Percayalah pada persiapanmu!</td>
+                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d3"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="container" style="margin-top: 40px;">
+            <h2>Tips Sukses Tambahan:</h2>
+            <ul>
+                <li>**Pemanasan & Pendinginan Otak:** Selalu mulai sesi belajar dengan sedikit pemanasan (review singkat materi hari sebelumnya) dan akhiri dengan pendinginan (merangkum apa yang baru kamu pelajari hari itu).</li>
+                <li>**Belajar Aktif, Bukan Pasif:** Jangan cuma membaca! Coba tulis ulang, jelaskan materi pada diri sendiri atau teman, buat soal latihan sendiri, atau gunakan **Teknik Feynman** (jelaskan materi seolah kamu mengajarinya ke orang lain).</li>
+                <li>**Fleksibilitas Itu Kunci:** Rencana ini adalah peta jalan, tapi kamu bebas menyesuaikannya. Jika ada satu topik yang butuh waktu lebih lama, berikan. Jika sudah sangat paham, bisa langsung melompat ke topik berikutnya.</li>
+                <li>**Sehat Itu Prioritas:** Jangan lupakan pentingnya istirahat yang cukup (7-9 jam tidur), makan makanan bergizi, dan olahraga ringan. Otak yang sehat butuh tubuh yang sehat.</li>
+                <li>**Evaluasi Diri Berkala:** Setiap akhir minggu atau bulan, luangkan waktu untuk mengevaluasi progresmu. Apa yang sudah dikuasai? Apa yang masih perlu diperbaiki? Fokus pada perbaikan kelemahan.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Data jadwal belajar
+        const scheduleData = {
+            month1: [
+                { day: "Hari 1", subject: "Matematika", grade: "Kelas 10", topic: "Aljabar Dasar: Persamaan Linear Satu Variabel, Sistem Persamaan Linear Dua Variabel (SPLDV)", notes: "Latihan 10 soal dasar SPLDV" },
+                { day: "Hari 2", subject: "Biologi", grade: "Kelas 10", topic: "Sel: Pengertian, Sejarah Penemuan Sel, Organela (Ribosom, Mitokondria, Lisosom, RE), Mekanisme Transpor Zat Melalui Membran", notes: "Gambar diagram sel lengkap dengan label" },
+                { day: "Hari 3", subject: "Fisika", grade: "Kelas 10", topic: "Besaran & Satuan: Besaran Pokok & Turunan, Satuan Internasional, Dimensi Besaran", notes: "Latihan konversi satuan, analisis dimensi" },
+                { day: "Hari 4", subject: "Matematika", grade: "Kelas 10", topic: "Fungsi Kuadrat: Bentuk Umum, Menentukan Akar (Faktorisasi, Rumus ABC), Diskriminan", notes: "Mengerjakan 10 soal mencari akar fungsi kuadrat" },
+                { day: "Hari 5", subject: "Biologi", grade: "Kelas 10", topic: "Jaringan Tumbuhan: Jaringan Epidermis & Parenkim, Organ Tumbuhan (Akar, Batang), Pembentukan Lingkaran Tahun", notes: "Buat mind map jaringan dan organ tumbuhan" },
+                { day: "Hari 6", subject: "Review/Latihan", grade: "Kelas 10", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 7", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 8", subject: "Fisika", grade: "Kelas 10", topic: "Gerak Lurus: Gerak Lurus Beraturan (GLB), Gerak Lurus Berubah Beraturan (GLBB), Persamaan GLB/GLBB", notes: "Latihan soal perhitungan GLB/GLBB" },
+                { day: "Hari 9", subject: "Matematika", grade: "Kelas 10", topic: "Trigonometri Dasar: Perbandingan Trigonometri (Sin, Cos, Tan), Sudut Istimewa (0°, 30°, 45°, 60°, 90°)", notes: "Hafalkan nilai sudut istimewa, latihan soal segitiga siku-siku" },
+                { day: "Hari 10", subject: "Biologi", grade: "Kelas 10", topic: "Struktur Tumbuhan Lanjutan: Struktur Anatomi Daun & Bunga, Teori Tunika Corpus, Tipe Berkas Pembuluh, Kultur Jaringan", notes: "Gambarkan penampang daun, jelaskan fungsi jaringan" },
+                { day: "Hari 11", subject: "Fisika", grade: "Kelas 10", topic: "Hukum Newton tentang Gerak: Hukum I, II, III Newton, Gaya Gesek, Aplikasi Hukum Newton", notes: "Latihan soal gaya dan percepatan" },
+                { day: "Hari 12", subject: "Matematika", grade: "Kelas 10", topic: "Geometri Datar: Luas & Keliling Bangun Datar (Segitiga, Segiempat, Lingkaran), Teorema Pythagoras, Garis dan Sudut", notes: "Hitung luas dan keliling bangun datar kompleks" },
+                { day: "Hari 13", subject: "Review/Latihan", grade: "Kelas 10", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 14", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 15", subject: "Biologi", grade: "Kelas 10", topic: "Jaringan Hewan: Jaringan Epitelium, Organ (Struktur Kulit), Sistem Organ", notes: "Buat tabel jenis jaringan hewan dan fungsinya" },
+                { day: "Hari 16", subject: "Fisika", grade: "Kelas 10", topic: "Usaha & Energi: Konsep Usaha, Energi Kinetik, Energi Potensial, Hukum Kekekalan Energi Mekanik", notes: "Latihan soal perhitungan usaha dan energi" },
+                { day: "Hari 17", subject: "Matem,atika", grade: "Kelas 10", topic: "Vektor: Pengertian, Operasi Vektor (Penjumlahan, Pengurangan), Vektor Satuan", notes: "Latihan 10 soal operasi vektor" },
+                { day: "Hari 18", subject: "Biologi", grade: "Kelas 10", topic: "Ekosistem & Keanekaragaman Hayati: Interaksi, Klasifikasi", notes: "Gambarkan rantai makanan, klasifikasi 5 Kingdom" },
+                { day: "Hari 19", subject: "Fisika", grade: "Kelas 10", topic: "Impuls & Momentum: Konsep Impuls, Momentum, Hukum Kekekalan Momentum", notes: "Latihan soal tumbukan" },
+                { day: "Hari 20", subject: "Review/Latihan", grade: "Kelas 10", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 21", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 22", subject: "Matematika", grade: "Kelas 10", topic: "Statistika: Pengumpulan & Penyajian Data, Ukuran Pemusatan Data (Mean, Median, Modus)", notes: "Hitung mean, median, modus dari data tunggal dan kelompok" },
+                { day: "Hari 23", subject: "Biologi", grade: "Kelas 10", topic: "Virus & Mikroorganisme: Bakteri, Protista, Fungi (Ciri, Klasifikasi, Peran)", notes: "Buat tabel perbandingan virus, bakteri, protista, fungi" },
+                { day: "Hari 24", subject: "Fisika", grade: "Kelas 10", topic: "Elastisitas dan Hukum Hooke: Tegangan, Regangan, Modulus Young, Hukum Hooke, Energi Potensial Pegas", notes: "Latihan soal perhitungan pegas" },
+                { day: "Hari 25", subject: "Matematika", grade: "Kelas 10", topic: "Peluang: Kaidah Pencacahan (Faktorial, Permutasi, Kombinasi), Peluang Kejadian Sederhana", notes: "Latihan soal peluang koin/dadu, kartu remi" },
+                { day: "Hari 26", subject: "Biologi", grade: "Kelas 10", topic: "Daur Biogeokimia & Plantae/Animalia: Daur Karbon, Nitrogen, Air, Ciri & Klasifikasi Filum Utama Plantae & Animalia", notes: "Gambarkan siklus daur biogeokimia utama" },
+                { day: "Hari 27", subject: "Review/Latihan", grade: "Kelas 10", topic: "Review Seluruh Materi Kelas 10 (Matematika, Biologi, Fisika)", notes: "Latihan soal komprehensif Kelas 10" },
+                { day: "Hari 28", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 29", subject: "Persiapan Bulan 2", grade: "", topic: "Siapkan materi/buku untuk Kelas 11", notes: "" },
+                { day: "Hari 30", subject: "Persiapan Bulan 2", grade: "", topic: "", notes: "" }
+            ],
+            month2: [
+                { day: "Hari 31", subject: "Matematika", grade: "Kelas 11", topic: "Persamaan Lingkaran: Bentuk Umum, Pusat (0,0) dan (a,b), Kedudukan Titik/Garis terhadap Lingkaran", notes: "Mengerjakan 10 soal persamaan lingkaran" },
+                { day: "Hari 32", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Gerak Manusia: Letak & Fungsi Rangka, Macam-Macam Tulang & Strukturnya, Osifikasi Tulang, Hubungan Antar Tulang", notes: "Buat diagram sistem rangka & jenis tulang" },
+                { day: "Hari 33", subject: "Fisika", grade: "Kelas 11", topic: "Dinamika Rotasi & Keseimbangan Benda Tegar: Torsi, Momen Inersia, Hukum Newton untuk Gerak Rotasi, Titik Berat", notes: "Latihan soal torsi dan titik berat" },
+                { day: "Hari 34", subject: "Matematika", grade: "Kelas 11", topic: "Polinomial (Suku Banyak): Pengertian, Nilai Polinomial, Pembagian Polinomial (Horner), Teorema Sisa, Teorema Faktor", notes: "Menyelesaikan soal pembagian dan mencari akar polinomial" },
+                { day: "Hari 35", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Gerak Manusia (Lanjutan): Otot (Jenis, Karakteristik), Mekanisme Kerja Otot, Kontraksi Otot (Jantung, Polos), Kelainan Otot", notes: "Jelaskan mekanisme kontraksi otot" },
+                { day: "Hari 36", subject: "Review/Latihan", grade: "Kelas 10/11", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 37", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 38", subject: "Fisika", grade: "Kelas 11", topic: "Fluida Statis: Tekanan Hidrostatis, Hukum Archimedes, Hukum Pascal, Tegangan Permukaan, Kapilaritas", notes: "Latihan soal gaya apung dan tekanan" },
+                { day: "Hari 39", subject: "Matematika", grade: "Kelas 11", topic: "Fungsi Komposisi & Fungsi Invers: Pengertian, Menentukan Fungsi Komposisi (f o g(x)), Menentukan Fungsi Invers (f-1(x))", notes: "Latihan menentukan fungsi invers dari berbagai bentuk" },
+                { day: "Hari 40", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Peredaran Darah: Darah Manusia (Golongan Darah ABO & Rh, Transfusi), Alat-Alat Peredaran Darah (Jantung, Pembuluh)", notes: "Gambarkan siklus peredaran darah lengkap" },
+                { day: "Hari 41", subject: "Fisika", grade: "Kelas 11", topic: "Fluida Dinamis: Persamaan Kontinuitas, Hukum Bernoulli, Aplikasi Bernoulli (Venturimeter, Gaya Angkat Pesawat)", notes: "Latihan soal aliran fluida" },
+                { day: "Hari 42", subject: "Matematika", grade: "Kelas 11", topic: "Limit Fungsi Aljabar: Menentukan Nilai Limit (Substitusi, Faktorisasi, Perkalian Sekawan), Limit Tak Hingga", notes: "Latihan soal limit sederhana dan tak hingga" },
+                { day: "Hari 43", subject: "Review/Latihan", grade: "Kelas 10/11", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 44", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 45", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Pencernaan: Mineral & Vitamin, Organ Pencernaan (Mulut, Kerongkongan, Lambung, Usus Halus, Usus Besar, Anus), Zat Makanan (Karbohidrat, Protein, Lemak, Air)", notes: "Buat alur lengkap pencernaan makanan dan enzimnya" },
+                { day: "Hari 46", subject: "Fisika", grade: "Kelas 11", topic: "Suhu & Kalor: Konsep Suhu, Kalor Jenis, Kapasitas Kalor, Perpindahan Kalor (Konduksi, Konveksi, Radiasi), Pemuaian", notes: "Latihan soal perhitungan kalor dan perubahan suhu" },
+                { day: "Hari 47", subject: "Matematika", grade: "Kelas 11", topic: "Turunan Fungsi Aljabar (Diferensial): Aturan Dasar Turunan (y=ax^n), Aturan Rantai, Aplikasi Turunan (Persamaan Garis Singgung, Nilai Maksimum/Minimum)", notes: "Latihan soal turunan dan aplikasinya" },
+                { day: "Hari 48", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Pernapasan: Organ Pernapasan, Proses Pernapasan, Mekanisme Pernapasan, Faktor Frekuensi Pernapasan, Pengangkutan O2 & CO2", notes: "Jelaskan proses pertukaran gas secara detail" },
+                { day: "Hari 49", subject: "Fisika", grade: "Kelas 11", topic: "Teori Kinetik Gas: Sifat-sifat Gas Ideal, Persamaan Gas Ideal, Energi Kinetik Gas, Tekanan Gas", notes: "Latihan soal perhitungan gas ideal" },
+                { day: "Hari 50", subject: "Review/Latihan", grade: "Kelas 10/11", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
+                { day: "Hari 51", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 52", subject: "Matematika", grade: "Kelas 11", topic: "Integral Tak Tentu & Tentu: Aturan Dasar Integral (y=ax^n), Integral Substitusi", notes: "Latihan soal integral" },
+                { day: "Hari 53", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Ekskresi: Pengertian (Ekskresi, Defekasi, Sekresi), Organ Ekskresi (Paru-paru, Kulit, Hati), Struktur Ginjal & Proses Pembentukan Urine", notes: "Jelaskan fungsi nefron dan tahapan pembentukan urine" },
+                { day: "Hari 54", subject: "Fisika", grade: "Kelas 11", topic: "Termodinamika: Hukum Termodinamika I (Energi Dalam, Usaha, Kalor), Proses Termodinamika (Isotermal, Isokhorik, Isobarik, Adiabatik), Siklus Carnot", notes: "Latihan soal hukum I termodinamika dan efisiensi mesin" },
+                { day: "Hari 55", subject: "Matematika", grade: "Kelas 11", topic: "Program Linear: Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV), Menentukan Daerah Penyelesaian, Menentukan Nilai Optimum", notes: "Latihan soal optimasi dengan fungsi tujuan" },
+                { day: "Hari 56", subject: "Biologi", grade: "Kelas 11", topic: "Sistem Koordinasi & Alat Indra: Sistem Saraf (Struktur Sel Saraf, Otak, Sumsum Tulang Belakang, Saraf Tepi), Gerak Refleks, Obat Psikotropika, Kelainan Saraf", notes: "Buat diagram neuron dan jalannya impuls" },
+                { day: "Hari 57", subject: "Review/Latihan", grade: "Kelas 10/11", topic: "Review Seluruh Materi Kelas 11 & Review Singkat Kelas 10 (Matematika, Biologi, Fisika)", notes: "Latihan soal komprehensif Kelas 10 & 11" },
+                { day: "Hari 58", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 59", subject: "Persiapan Bulan 3", grade: "", topic: "Siapkan materi/buku untuk Kelas 12", notes: "" },
+                { day: "Hari 60", subject: "Persiapan Bulan 3", grade: "", topic: "", notes: "" }
+            ],
+            month3: [
+                { day: "Hari 61", subject: "Matematika", grade: "Kelas 12", topic: "Matriks: Jenis-jenis Matriks, Operasi Matriks (Penjumlahan, Pengurangan, Perkalian), Determinan Matriks Ordo 2x2 & 3x3, Invers Matriks 2x2", notes: "Latihan penjumlahan/pengurangan/perkalian matriks" },
+                { day: "Hari 62", subject: "Biologi", grade: "Kelas 12", topic: "Sistem Koordinasi (Lanjutan): Sistem Endokrin (Hormon Hipofisis, Adrenal, Tiroid, Paratiroid), Alat Indra (Kulit, Mata, Telinga, Hidung)", notes: "Buat tabel kelenjar & hormon penting beserta fungsinya" },
+                { day: "Hari 63", subject: "Fisika", grade: "Kelas 12", topic: "Listrik Statis: Hukum Coulomb, Medan Listrik, Potensial Listrik, Energi Potensial Listrik, Kapasitor", notes: "Latihan soal gaya Coulomb dan kapasitor" },
+                { day: "Hari 64", subject: "Matematika", grade: "Kelas 12", topic: "Geometri Ruang (Dimensi Tiga): Jarak Antartitik, Titik ke Garis, Titik ke Bidang, Sudut Antara Garis dengan Bidang", notes: "Latihan soal jarak dan sudut pada bangun ruang" },
+                { day: "Hari 65", subject: "Biologi", grade: "Kelas 12", topic: "Bab 1: Enzim dan Metabolisme: Struktur & Sifat Enzim, Faktor Memengaruhi Kerja Enzim, Anabolisme & Katabolisme, Respirasi Seluler, Fermentasi", notes: "Jelaskan tahapan respirasi aerob secara detail" },
+                { day: "Hari 66", subject: "Review/Latihan", grade: "Kelas 10/11/12", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel (dari semua kelas)" },
+                { day: "Hari 67", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 68", subject: "Fisika", grade: "Kelas 12", topic: "Listrik Dinamis: Arus Listrik, Hukum Ohm, Rangkaian Listrik (Seri, Paralel), Hukum Kirchhoff, Energi & Daya Listrik", notes: "Latihan soal rangkaian listrik dan daya" },
+                { day: "Hari 69", subject: "Matematika", grade: "Kelas 12", topic: "Transformasi Geometri: Translasi, Refleksi, Rotasi, Dilatasi (dengan Matriks)", notes: "Latihan menggambar hasil transformasi koordinat" },
+                { day: "Hari 70", subject: "Biologi", grade: "Kelas 12", topic: "Bab 1: Enzim dan Metabolisme (Lanjutan): Fotosintesis (Reaksi Terang & Gelap), Faktor-Faktor Fotosintesis. Bab 2: Genetik & Pewarisan Sifat: Materi Genetik (DNA & RNA), Sintesis Protein (Transkripsi, Translasi), Kode Genetik.", notes: "Buat alur sintesis protein lengkap" },
+                { day: "Hari 71", subject: "Fisika", grade: "Kelas 12", topic: "Medan Magnet & Induksi Elektromagnetik: Gaya Lorentz, Induksi Magnetik, Hukum Faraday, GGL Induksi, Rangkaian Arus Bolak-balik (AC)", notes: "Latihan soal gaya Lorentz dan induksi" },
+                { day: "Hari 72", subject: "Matematika", grade: "Kelas 12", topic: "Limit Fungsi Trigonometri & Limit di Tak Hingga", notes: "Latihan soal limit lanjutan (bentuk tak tentu, L'Hopital)" },
+                { day: "Hari 73", subject: "Review/Latihan", grade: "Kelas 10/11/12", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel (dari semua kelas)" },
+                { day: "Hari 74", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 75", subject: "Biologi", grade: "Kelas 12", topic: "Bab 2: Genetik & Pewarisan Sifat (Lanjutan): Pembelahan Sel, Pewarisan Sifat, Penyimpangan Semu Hukum Mendel, Mutasi Gen & Kromosom. Bab 3: Teori Evolusi: Definisi Evolusi, Teori PraDarwin, Teori Darwin, Teori PascaDarwin.", notes: "Buat ringkasan teori evolusi dan bukti-buktinya" },
+                { day: "Hari 76", subject: "Fisika", grade: "Kelas 12", topic: "Karakteristik Gelombang Mekanik: Persamaan Gelombang, Cepat Rambat, Frekuensi, Periode, Amplitudo, Superposisi, Interferensi, Difraksi, Polarisasi", notes: "Latihan soal gelombang bunyi dan cahaya" },
+                { day: "Hari 77", subject: "Matematika", grade: "Kelas 12", topic: "Turunan Fungsi Trigonometri & Aplikasi Turunan Lanjutan", notes: "Latihan soal turunan fungsi trigonometri dan aplikasinya" },
+                { day: "Hari 78", subject: "Biologi", grade: "Kelas 12", topic: "Bab 4: Inovasi Bioteknologi: Definisi & Manfaat Bioteknologi, Jenis Bioteknologi & Cabang Ilmu, Aplikasi Bioteknologi Konvensional, Aplikasi Bioteknologi Modern, Harapan & Kenyataan, Bioetika.", notes: "Cari contoh aplikasi bioteknologi di kehidupan sehari-hari" },
+                { day: "Hari 79", subject: "Fisika", grade: "Kelas 12", topic: "Fisika Modern: Teori Relativitas Einstein, Radiasi Benda Hitam, Efek Fotolistrik, Teori Atom Bohr, Dualisme Gelombang-Partikel", notes: "Pahami konsep dasar relativitas dan kuantum" },
+                { day: "Hari 80", subject: "Review/Latihan", grade: "Kelas 10/11/12", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel (dari semua kelas)" },
+                { day: "Hari 81", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
+                { day: "Hari 82", subject: "Matematika", grade: "Kelas 10-12", topic: "Persiapan Ujian: Latihan Soal Simulasi (Full Set)", notes: "Kerjakan 1 set soal ujian tahun lalu/prediksi ujian secara penuh" },
+                { day: "Hari 83", subject: "Biologi", grade: "Kelas 10-12", topic: "Persiapan Ujian: Latihan Soal Simulasi (Full Set)", notes: "Kerjakan 1 set soal ujian tahun lalu/prediksi ujian secara penuh" },
+                { day: "Hari 84", subject: "Fisika", grade: "Kelas 10-12", topic: "Persiapan Ujian: Latihan Soal Simulasi (Full Set)", notes: "Kerjakan 1 set soal ujian tahun lalu/prediksi ujian secara penuh" },
+                { day: "Hari 85", subject: "Review Umum", grade: "Kelas 10-12", topic: "Identifikasi & Perbaiki Materi Sulit: Fokus pada bab/topik yang sering salah atau kurang paham dari semua mapel", notes: "Buat daftar materi yang perlu diperkuat" },
+                { day: "Hari 86", subject: "Review Umum", grade: "Kelas 10-12", topic: "Membuat Peta Konsep/Ringkasan Komprehensif dari seluruh materi Matematika, Biologi, dan Fisika", notes: "Visualisasikan hubungan antar konsep" },
+                { day: "Hari 87", subject: "Latihan Soal Campuran", grade: "Kelas 10-12", topic: "Kerjakan soal-soal campuran dari berbagai bab dan tingkat kesulitan (semua mapel)", notes: "Identifikasi area lemah secara detail" },
+                { day: "Hari 88", subject: "Latihan Soal Campuran", grade: "Kelas 10-12", topic: "Lanjutkan mengerjakan soal campuran, fokus pada perbaikan kesalahan (semua mapel)", notes: "Perbaiki kesalahan & pahami konsep yang salah" },
+                { day: "Hari 89", subject: "Istirahat/Review Ringan", grade: "Kelas 10-12", topic: "Baca catatan ringkas, flashcards, atau dengarkan rekaman materi", notes: "Jaga pikiran tetap rileks, hindari belajar berat" },
+                { day: "Hari 90", subject: "Istirahat Penuh", grade: "", topic: "Tidur cukup, makan bergizi, hindari begadang", notes: "Siapkan mental untuk ujian" }
+            ]
+        };
+
+        // Fungsi untuk mengisi tabel jadwal
+        function populateSchedule(monthData, tableId) {
+            const tbody = document.querySelector(`#${tableId} tbody`);
+            tbody.innerHTML = ''; // Kosongkan tabel sebelum mengisi
+
+            monthData.forEach((item, index) => {
+                const row = document.createElement('tr');
+                const uniqueId = `${tableId.replace('-schedule', '')}d${index + 1}`; // ID unik untuk checkbox
+
+                row.innerHTML = `
+                    <td data-label="Hari">${item.day}</td>
+                    <td data-label="Mata Pelajaran">${item.subject}</td>
+                    <td data-label="Tingkat Kelas">${item.grade}</td>
+                    <td data-label="Topik/Materi yang Akan Dipelajari">${item.topic}</td>
+                    <td data-label="Catatan/Latihan">${item.notes}</td>
+                    <td data-label="Selesai" class="checkbox-container">
+                        <input type="checkbox" class="task-checkbox" id="${uniqueId}">
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menyimpan status checkbox ke Local Storage
+        function saveCheckboxState() {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const checkedStates = {};
+            checkboxes.forEach(checkbox => {
+                checkedStates[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem('studyScheduleStates', JSON.stringify(checkedStates));
+        }
+
+        // Fungsi untuk memuat status checkbox dari Local Storage
+        function loadCheckboxState() {
+            const savedStates = JSON.parse(localStorage.getItem('studyScheduleStates'));
+            if (savedStates) {
+                for (const id in savedStates) {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = savedStates[id];
+                    }
+                }
+            }
+        }
+
+        // Inisialisasi jadwal dan PWA saat DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Isi tabel jadwal
+            populateSchedule(scheduleData.month1, 'month1-schedule');
+            populateSchedule(scheduleData.month2, 'month2-schedule');
+            populateSchedule(scheduleData.month3, 'month3-schedule');
+            
+            // Bulan 4 sudah di HTML, jadi hanya perlu memuat status checkboxnya
+            loadCheckboxState();
+
+            // Tambahkan event listener untuk setiap checkbox
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', saveCheckboxState);
+            });
+
+            // PWA: Registrasi Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js') // Path relatif ke root
+                        .then(registration => {
+                            console.log('ServiceWorker registered with scope:', registration.scope);
+                        })
+                        .catch(registrationError => {
+                            console.log('ServiceWorker registration failed:', registrationError);
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
