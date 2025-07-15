@@ -18,7 +18,7 @@
             --checkbox-checked: #A2E8A2; /* Hijau pastel lembut */
             --border-color: #E0E0E0; /* Abu-abu sangat terang */
             --shadow-color: rgba(0, 0, 0, 0.08);
-            --font-family: 'Inter', sans-serif;
+            --font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
         }
 
         body {
@@ -34,7 +34,52 @@
             min-height: 100vh;
             box-sizing: border-box;
             overflow-x: hidden; /* Mencegah scroll horizontal */
+            position: relative; /* Untuk posisi bunga */
         }
+
+        /* Gaya untuk elemen bunga bergerak */
+        .flower-petal {
+            position: absolute;
+            font-size: 3em; /* Ukuran bunga */
+            color: #FFC0CB; /* Pink pastel */
+            opacity: 0.7;
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            animation: floatAndFade linear infinite;
+            z-index: -1; /* Di belakang konten utama */
+        }
+
+        @keyframes floatAndFade {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translateY(-25vh) translateX(10vw) rotate(90deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(20vw) rotate(180deg);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translateY(-75vh) translateX(30vw) rotate(270deg);
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(40vw) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Posisi dan durasi animasi bunga yang berbeda */
+        .flower-1 { top: 10%; left: 5%; animation-duration: 15s; animation-delay: 0s; }
+        .flower-2 { top: 30%; left: 20%; animation-duration: 18s; animation-delay: 3s; font-size: 2.5em; }
+        .flower-3 { top: 50%; left: 80%; animation-duration: 20s; animation-delay: 6s; font-size: 3.5em; }
+        .flower-4 { top: 70%; left: 40%; animation-duration: 16s; animation-delay: 9s; font-size: 2.8em; }
+        .flower-5 { top: 90%; left: 60%; animation-duration: 19s; animation-delay: 12s; font-size: 3.2em; }
+        .flower-6 { top: 20%; left: 90%; animation-duration: 17s; animation-delay: 2s; font-size: 2.7em; }
+        .flower-7 { top: 80%; left: 10%; animation-duration: 21s; animation-delay: 7s; font-size: 3.1em; }
+
 
         .container {
             width: 100%;
@@ -46,6 +91,8 @@
             margin-bottom: 25px;
             box-sizing: border-box;
             border: 1px solid var(--accent-color-1); /* Border lembut */
+            position: relative; /* Agar z-index bunga berfungsi */
+            z-index: 1; /* Di atas bunga */
         }
 
         h1, h2, h3 {
@@ -104,6 +151,23 @@
             box-shadow: 0 6px 15px var(--shadow-color);
             transform: translateY(-3px);
             transition: all 0.3s ease-in-out;
+        }
+
+        .editable-cell {
+            cursor: text; /* Menunjukkan bahwa teks bisa diedit */
+        }
+
+        .editable-cell textarea {
+            width: 100%;
+            min-height: 50px; /* Tinggi minimum untuk textarea */
+            border: 1px solid var(--accent-color-1);
+            border-radius: 5px;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            font-size: 1em;
+            background-color: #FFFFFF;
+            resize: vertical; /* Memungkinkan resize vertikal */
         }
 
         .checkbox-container {
@@ -208,16 +272,28 @@
                 justify-content: flex-end;
                 margin-top: 10px; /* Spasi di bawah label di mobile */
             }
+            .editable-cell textarea {
+                min-height: 30px; /* Lebih kecil untuk mobile */
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Elemen bunga bergerak -->
+    <div class="flower-petal flower-1">🌸</div>
+    <div class="flower-petal flower-2">🌺</div>
+    <div class="flower-petal flower-3">🌸</div>
+    <div class="flower-petal flower-4">🌺</div>
+    <div class="flower-petal flower-5">🌸</div>
+    <div class="flower-petal flower-6">🌺</div>
+    <div class="flower-petal flower-7">🌸</div>
+
     <div class="container">
         <h1>Jejak Ilmu: Mekar Bersama Pengetahuan</h1>
         <p style="text-align: center; font-style: italic; color: var(--text-color-light);">Petualangan Belajar 3 Bulan Menuju Sukses Ujian!</p>
         <p style="text-align: center; font-weight: bold; color: var(--accent-color-2);">Ujian Penentu: Hari ke-3 Bulan ke-4</p>
         <p style="text-align: center; font-size: 0.9em; color: var(--text-color-light);">
-            *Penting: Rencana ini adalah panduan. Sesuaikan contoh materi spesifik ini dengan kurikulum sekolahmu dan fokus pada area yang kamu rasa paling perlu penguatan.*
+            Rencana ini adalah panduan. Sesuaikan contoh materi spesifik dengan kurikulum sekolah dan fokus pada area yang paling perlu penguatan.
         </p>
 
         <h2>Bulan ke-1: Fondasi Kelas 10 & Pengantar Ilmu Pengetahuan</h2>
@@ -229,7 +305,7 @@
                     <th>Hari</th>
                     <th>Mata Pelajaran</th>
                     <th>Tingkat Kelas</th>
-                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Topik:</th>
                     <th>Catatan/Latihan</th>
                     <th>Selesai</th>
                 </tr>
@@ -248,7 +324,7 @@
                     <th>Hari</th>
                     <th>Mata Pelajaran</th>
                     <th>Tingkat Kelas</th>
-                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Topik:</th>
                     <th>Catatan/Latihan</th>
                     <th>Selesai</th>
                 </tr>
@@ -267,7 +343,7 @@
                     <th>Hari</th>
                     <th>Mata Pelajaran</th>
                     <th>Tingkat Kelas</th>
-                    <th>Topik/Materi yang Akan Dipelajari</th>
+                    <th>Topik:</th>
                     <th>Catatan/Latihan</th>
                     <th>Selesai</th>
                 </tr>
@@ -299,7 +375,7 @@
                 </tr>
                 <tr>
                     <td data-label="Hari">Hari 3</td>
-                    <td data-label="Kegiatan">**Ujian!** Lakukan yang terbaik! Percayalah pada persiapanmu!</td>
+                    <td data-label="Kegiatan">**Ujian!** Lakukan yang terbaik! Percayalah pada persiapan!</td>
                     <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d3"></td>
                 </tr>
             </tbody>
@@ -308,18 +384,18 @@
         <div class="container" style="margin-top: 40px;">
             <h2>Tips Sukses Tambahan:</h2>
             <ul>
-                <li>**Pemanasan & Pendinginan Otak:** Selalu mulai sesi belajar dengan sedikit pemanasan (review singkat materi hari sebelumnya) dan akhiri dengan pendinginan (merangkum apa yang baru kamu pelajari hari itu).</li>
-                <li>**Belajar Aktif, Bukan Pasif:** Jangan cuma membaca! Coba tulis ulang, jelaskan materi pada diri sendiri atau teman, buat soal latihan sendiri, atau gunakan **Teknik Feynman** (jelaskan materi seolah kamu mengajarinya ke orang lain).</li>
-                <li>**Fleksibilitas Itu Kunci:** Rencana ini adalah peta jalan, tapi kamu bebas menyesuaikannya. Jika ada satu topik yang butuh waktu lebih lama, berikan. Jika sudah sangat paham, bisa langsung melompat ke topik berikutnya.</li>
-                <li>**Sehat Itu Prioritas:** Jangan lupakan pentingnya istirahat yang cukup (7-9 jam tidur), makan makanan bergizi, dan olahraga ringan. Otak yang sehat butuh tubuh yang sehat.</li>
-                <li>**Evaluasi Diri Berkala:** Setiap akhir minggu atau bulan, luangkan waktu untuk mengevaluasi progresmu. Apa yang sudah dikuasai? Apa yang masih perlu diperbaiki? Fokus pada perbaikan kelemahan.</li>
+                <li>**Pemanasan & Pendinginan Otak:** Selalu mulai sesi belajar dengan sedikit pemanasan (review singkat materi hari sebelumnya) dan akhiri dengan pendinginan (merangkum apa yang baru dipelajari hari itu).</li>
+                <li>**Belajar Aktif, Bukan Pasif:** Jangan cuma membaca! Coba tulis ulang, jelaskan materi pada diri sendiri atau teman, buat soal latihan sendiri, atau gunakan **Teknik Feynman** (jelaskan materi seolah mengajarinya ke orang lain).</li>
+                <li>**Fleksibilitas Itu Kunci:** Rencana ini adalah peta jalan, namun bebas disesuaikan. Jika satu topik membutuhkan waktu lebih lama, berikan. Jika sudah sangat paham, bisa langsung melompat ke topik berikutnya.</li>
+                <li>**Sehat Itu Prioritas:** Jangan lupakan pentingnya istirahat yang cukup (7-9 jam tidur), makan makanan bergizi, dan olahraga ringan. Otak yang sehat membutuhkan tubuh yang sehat.</li>
+                <li>**Evaluasi Diri Berkala:** Setiap akhir minggu atau bulan, luangkan waktu untuk mengevaluasi progres. Apa yang sudah dikuasai? Apa yang masih perlu diperbaiki? Fokus pada perbaikan kelemahan.</li>
             </ul>
         </div>
     </div>
 
     <script>
-        // Data jadwal belajar
-        const scheduleData = {
+        // Data jadwal belajar default
+        const defaultScheduleData = {
             month1: [
                 { day: "Hari 1", subject: "Matematika", grade: "Kelas 10", topic: "Aljabar Dasar: Persamaan Linear Satu Variabel, Sistem Persamaan Linear Dua Variabel (SPLDV)", notes: "Latihan 10 soal dasar SPLDV" },
                 { day: "Hari 2", subject: "Biologi", grade: "Kelas 10", topic: "Sel: Pengertian, Sejarah Penemuan Sel, Organela (Ribosom, Mitokondria, Lisosom, RE), Mekanisme Transpor Zat Melalui Membran", notes: "Gambar diagram sel lengkap dengan label" },
@@ -337,7 +413,7 @@
                 { day: "Hari 14", subject: "Istirahat Penuh", grade: "", topic: "", notes: "" },
                 { day: "Hari 15", subject: "Biologi", grade: "Kelas 10", topic: "Jaringan Hewan: Jaringan Epitelium, Organ (Struktur Kulit), Sistem Organ", notes: "Buat tabel jenis jaringan hewan dan fungsinya" },
                 { day: "Hari 16", subject: "Fisika", grade: "Kelas 10", topic: "Usaha & Energi: Konsep Usaha, Energi Kinetik, Energi Potensial, Hukum Kekekalan Energi Mekanik", notes: "Latihan soal perhitungan usaha dan energi" },
-                { day: "Hari 17", subject: "Matem,atika", grade: "Kelas 10", topic: "Vektor: Pengertian, Operasi Vektor (Penjumlahan, Pengurangan), Vektor Satuan", notes: "Latihan 10 soal operasi vektor" },
+                { day: "Hari 17", subject: "Matematika", grade: "Kelas 10", topic: "Vektor: Pengertian, Operasi Vektor (Penjumlahan, Pengurangan), Vektor Satuan", notes: "Latihan 10 soal operasi vektor" },
                 { day: "Hari 18", subject: "Biologi", grade: "Kelas 10", topic: "Ekosistem & Keanekaragaman Hayati: Interaksi, Klasifikasi", notes: "Gambarkan rantai makanan, klasifikasi 5 Kingdom" },
                 { day: "Hari 19", subject: "Fisika", grade: "Kelas 10", topic: "Impuls & Momentum: Konsep Impuls, Momentum, Hukum Kekekalan Momentum", notes: "Latihan soal tumbukan" },
                 { day: "Hari 20", subject: "Review/Latihan", grade: "Kelas 10", topic: "Review Matematika, Biologi, Fisika Minggu Ini", notes: "Kerjakan 5 soal campur dari ketiga mapel" },
@@ -418,6 +494,9 @@
             ]
         };
 
+        // Variabel untuk menyimpan data jadwal yang sedang aktif (bisa diubah)
+        let currentScheduleData = JSON.parse(localStorage.getItem('savedScheduleData')) || defaultScheduleData;
+
         // Fungsi untuk mengisi tabel jadwal
         function populateSchedule(monthData, tableId) {
             const tbody = document.querySelector(`#${tableId} tbody`);
@@ -425,19 +504,65 @@
 
             monthData.forEach((item, index) => {
                 const row = document.createElement('tr');
-                const uniqueId = `${tableId.replace('-schedule', '')}d${index + 1}`; // ID unik untuk checkbox
+                const uniqueIdPrefix = tableId.replace('-schedule', '');
+                const uniqueRowId = `${uniqueIdPrefix}Row${index + 1}`; // ID unik untuk baris
+                const topicId = `${uniqueRowId}-topic`;
+                const notesId = `${uniqueRowId}-notes`;
+                const checkboxId = `${uniqueRowId}-checkbox`;
 
                 row.innerHTML = `
                     <td data-label="Hari">${item.day}</td>
                     <td data-label="Mata Pelajaran">${item.subject}</td>
                     <td data-label="Tingkat Kelas">${item.grade}</td>
-                    <td data-label="Topik/Materi yang Akan Dipelajari">${item.topic}</td>
-                    <td data-label="Catatan/Latihan">${item.notes}</td>
+                    <td data-label="Topik:" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="topic" id="${topicId}">${item.topic}</td>
+                    <td data-label="Catatan/Latihan" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="notes" id="${notesId}">${item.notes}</td>
                     <td data-label="Selesai" class="checkbox-container">
-                        <input type="checkbox" class="task-checkbox" id="${uniqueId}">
+                        <input type="checkbox" class="task-checkbox" id="${checkboxId}">
                     </td>
                 `;
                 tbody.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menyimpan seluruh data jadwal ke Local Storage
+        function saveAllScheduleData() {
+            localStorage.setItem('savedScheduleData', JSON.stringify(currentScheduleData));
+        }
+
+        // Fungsi untuk mengaktifkan editing sel
+        function makeCellEditable(cellElement, monthKey, index, field) {
+            const originalText = cellElement.textContent;
+            cellElement.innerHTML = ''; // Kosongkan sel
+
+            const textarea = document.createElement('textarea');
+            textarea.value = originalText;
+            cellElement.appendChild(textarea);
+            textarea.focus();
+
+            // Auto-resize textarea
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+
+            textarea.addEventListener('input', () => {
+                textarea.style.height = 'auto';
+                textarea.style.height = (textarea.scrollHeight) + 'px';
+            });
+
+            const saveEdit = () => {
+                const newValue = textarea.value;
+                currentScheduleData[monthKey][index][field] = newValue;
+                cellElement.textContent = newValue;
+                saveAllScheduleData(); // Simpan perubahan ke Local Storage
+                cellElement.classList.add('editable-cell'); // Pastikan kelas tetap ada
+            };
+
+            textarea.addEventListener('blur', saveEdit); // Simpan saat kehilangan fokus
+            textarea.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) { // Simpan saat Enter, tapi bukan Shift+Enter
+                    event.preventDefault(); // Mencegah newline
+                    saveEdit();
+                    textarea.blur(); // Hilangkan fokus
+                }
             });
         }
 
@@ -448,12 +573,12 @@
             checkboxes.forEach(checkbox => {
                 checkedStates[checkbox.id] = checkbox.checked;
             });
-            localStorage.setItem('studyScheduleStates', JSON.stringify(checkedStates));
+            localStorage.setItem('studyScheduleCheckboxes', JSON.stringify(checkedStates));
         }
 
         // Fungsi untuk memuat status checkbox dari Local Storage
         function loadCheckboxState() {
-            const savedStates = JSON.parse(localStorage.getItem('studyScheduleStates'));
+            const savedStates = JSON.parse(localStorage.getItem('studyScheduleCheckboxes'));
             if (savedStates) {
                 for (const id in savedStates) {
                     const checkbox = document.getElementById(id);
@@ -466,17 +591,27 @@
 
         // Inisialisasi jadwal dan PWA saat DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Isi tabel jadwal
-            populateSchedule(scheduleData.month1, 'month1-schedule');
-            populateSchedule(scheduleData.month2, 'month2-schedule');
-            populateSchedule(scheduleData.month3, 'month3-schedule');
+            // Isi tabel jadwal dengan data yang dimuat atau default
+            populateSchedule(currentScheduleData.month1, 'month1-schedule');
+            populateSchedule(currentScheduleData.month2, 'month2-schedule');
+            populateSchedule(currentScheduleData.month3, 'month3-schedule');
             
-            // Bulan 4 sudah di HTML, jadi hanya perlu memuat status checkboxnya
+            // Muat status checkbox
             loadCheckboxState();
 
             // Tambahkan event listener untuk setiap checkbox
             document.querySelectorAll('.task-checkbox').forEach(checkbox => {
                 checkbox.addEventListener('change', saveCheckboxState);
+            });
+
+            // Tambahkan event listener untuk sel yang bisa diedit
+            document.querySelectorAll('.editable-cell').forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const monthKey = this.dataset.month;
+                    const index = parseInt(this.dataset.index);
+                    const field = this.dataset.field;
+                    makeCellEditable(this, monthKey, index, field);
+                });
             });
 
             // PWA: Registrasi Service Worker
