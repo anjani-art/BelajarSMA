@@ -170,6 +170,36 @@
             resize: vertical; /* Memungkinkan resize vertikal */
         }
 
+        .editable-text-block {
+            cursor: text;
+            text-align: center;
+            font-style: italic;
+            color: var(--accent-color-1);
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px; /* Tambahkan padding agar mudah diklik */
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .editable-text-block:hover {
+            background-color: rgba(255, 182, 193, 0.1); /* Hover effect */
+        }
+
+        .editable-text-block textarea {
+            width: 100%;
+            min-height: 50px;
+            border: 1px solid var(--accent-color-1);
+            border-radius: 5px;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            font-size: 1em;
+            background-color: #FFFFFF;
+            resize: vertical;
+            text-align: center;
+        }
+
         .checkbox-container {
             display: flex;
             align-items: center;
@@ -272,7 +302,7 @@
                 justify-content: flex-end;
                 margin-top: 10px; /* Spasi di bawah label di mobile */
             }
-            .editable-cell textarea {
+            .editable-cell textarea, .editable-text-block textarea {
                 min-height: 30px; /* Lebih kecil untuk mobile */
             }
         }
@@ -293,7 +323,9 @@
         <p style="text-align: center; font-style: italic; color: var(--text-color-light);">Petualangan Belajar 3 Bulan Menuju Sukses Ujian!</p>
         <p style="text-align: center; font-weight: bold; color: var(--accent-color-2);">Ujian Penentu: Hari ke-3 Bulan ke-4</p>
         <p style="text-align: center; font-size: 0.9em; color: var(--text-color-light);">
-            Rencana ini adalah panduan. Sesuaikan contoh materi spesifik dengan kurikulum sekolah dan fokus pada area yang paling perlu penguatan.
+            Rencana ini adalah panduan agar fokus saja. Semangat!!🌸🌷
+        <p id="motivational-text" class="editable-text-block">
+            Setiap langkah kecil adalah kemajuan besar menuju impian! Teruslah bersemangat dalam setiap proses belajar.
         </p>
 
         <h2>Bulan ke-1: Fondasi Kelas 10 & Pengantar Ilmu Pengetahuan</h2>
@@ -363,32 +395,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td data-label="Hari">Hari 1</td>
-                    <td data-label="Kegiatan">Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline).</td>
-                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d1"></td>
-                </tr>
-                <tr>
-                    <td data-label="Hari">Hari 2</td>
-                    <td data-label="Kegiatan">Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline).</td>
-                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d2"></td>
-                </tr>
-                <tr>
-                    <td data-label="Hari">Hari 3</td>
-                    <td data-label="Kegiatan">**Ujian!** Lakukan yang terbaik! Percayalah pada persiapan!</td>
-                    <td data-label="Selesai" class="checkbox-container"><input type="checkbox" class="task-checkbox" id="m4d3"></td>
-                </tr>
+                <!-- Data akan diisi oleh JavaScript -->
             </tbody>
         </table>
 
         <div class="container" style="margin-top: 40px;">
             <h2>Tips Sukses Tambahan:</h2>
             <ul>
-                <li>**Pemanasan & Pendinginan Otak:** Selalu mulai sesi belajar dengan sedikit pemanasan (review singkat materi hari sebelumnya) dan akhiri dengan pendinginan (merangkum apa yang baru dipelajari hari itu).</li>
-                <li>**Belajar Aktif, Bukan Pasif:** Jangan cuma membaca! Coba tulis ulang, jelaskan materi pada diri sendiri atau teman, buat soal latihan sendiri, atau gunakan **Teknik Feynman** (jelaskan materi seolah mengajarinya ke orang lain).</li>
-                <li>**Fleksibilitas Itu Kunci:** Rencana ini adalah peta jalan, namun bebas disesuaikan. Jika satu topik membutuhkan waktu lebih lama, berikan. Jika sudah sangat paham, bisa langsung melompat ke topik berikutnya.</li>
-                <li>**Sehat Itu Prioritas:** Jangan lupakan pentingnya istirahat yang cukup (7-9 jam tidur), makan makanan bergizi, dan olahraga ringan. Otak yang sehat membutuhkan tubuh yang sehat.</li>
-                <li>**Evaluasi Diri Berkala:** Setiap akhir minggu atau bulan, luangkan waktu untuk mengevaluasi progres. Apa yang sudah dikuasai? Apa yang masih perlu diperbaiki? Fokus pada perbaikan kelemahan.</li>
+                <li>Pemanasan & Pendinginan Otak:Selalu mulai sesi belajar dengan sedikit pemanasan (review singkat materi hari sebelumnya) dan akhiri dengan pendinginan (merangkum apa yang baru dipelajari hari itu).</li>
+                <li>Belajar Aktif, Bukan Pasif:Jangan cuma membaca! Coba tulis ulang, jelaskan materi pada diri sendiri atau teman, buat soal latihan sendiri, atau gunakan **Teknik Feynman** (jelaskan materi seolah mengajarinya ke orang lain).</li>
+                <li>Fleksibilitas Itu Kunci:Rencana ini adalah peta jalan, namun bebas disesuaikan. Jika satu topik membutuhkan waktu lebih lama, berikan. Jika sudah sangat paham, bisa langsung melompat ke topik berikutnya.</li>
+                <li>Sehat Itu Prioritas:Jangan lupakan pentingnya istirahat yang cukup (7-9 jam tidur), makan makanan bergizi, dan olahraga ringan. Otak yang sehat membutuhkan tubuh yang sehat.</li>
+                <li>Evaluasi Diri Berkala:Setiap akhir minggu atau bulan, luangkan waktu untuk mengevaluasi progres. Apa yang sudah dikuasai? Apa yang masih perlu diperbaiki? Fokus pada perbaikan kelemahan.</li>
             </ul>
         </div>
     </div>
@@ -491,11 +509,17 @@
                 { day: "Hari 88", subject: "Latihan Soal Campuran", grade: "Kelas 10-12", topic: "Lanjutkan mengerjakan soal campuran, fokus pada perbaikan kesalahan (semua mapel)", notes: "Perbaiki kesalahan & pahami konsep yang salah" },
                 { day: "Hari 89", subject: "Istirahat/Review Ringan", grade: "Kelas 10-12", topic: "Baca catatan ringkas, flashcards, atau dengarkan rekaman materi", notes: "Jaga pikiran tetap rileks, hindari belajar berat" },
                 { day: "Hari 90", subject: "Istirahat Penuh", grade: "", topic: "Tidur cukup, makan bergizi, hindari begadang", notes: "Siapkan mental untuk ujian" }
+            ],
+            month4: [ // Data for Month 4 is now part of scheduleData
+                { day: "Hari 1", activity: "Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline)." },
+                { day: "Hari 2", activity: "Review Cepat & Persiapan Mental: Baca ringkasan, pastikan semua alat tulis siap, datang ke lokasi ujian lebih awal (jika offline)." },
+                { day: "Hari 3", activity: "**Ujian!** Lakukan yang terbaik! Percayalah pada persiapan!" }
             ]
         };
 
         // Variabel untuk menyimpan data jadwal yang sedang aktif (bisa diubah)
         let currentScheduleData = JSON.parse(localStorage.getItem('savedScheduleData')) || defaultScheduleData;
+        let motivationalTextContent = localStorage.getItem('motivationalText') || "Setiap langkah kecil adalah kemajuan besar menuju impian! Teruslah bersemangat dalam setiap proses belajar.";
 
         // Fungsi untuk mengisi tabel jadwal
         function populateSchedule(monthData, tableId) {
@@ -506,20 +530,28 @@
                 const row = document.createElement('tr');
                 const uniqueIdPrefix = tableId.replace('-schedule', '');
                 const uniqueRowId = `${uniqueIdPrefix}Row${index + 1}`; // ID unik untuk baris
-                const topicId = `${uniqueRowId}-topic`;
-                const notesId = `${uniqueRowId}-notes`;
                 const checkboxId = `${uniqueRowId}-checkbox`;
 
-                row.innerHTML = `
-                    <td data-label="Hari">${item.day}</td>
-                    <td data-label="Mata Pelajaran">${item.subject}</td>
-                    <td data-label="Tingkat Kelas">${item.grade}</td>
-                    <td data-label="Topik:" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="topic" id="${topicId}">${item.topic}</td>
-                    <td data-label="Catatan/Latihan" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="notes" id="${notesId}">${item.notes}</td>
-                    <td data-label="Selesai" class="checkbox-container">
-                        <input type="checkbox" class="task-checkbox" id="${checkboxId}">
-                    </td>
-                `;
+                if (tableId === 'month4-schedule') {
+                    row.innerHTML = `
+                        <td data-label="Hari">${item.day}</td>
+                        <td data-label="Kegiatan" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="activity">${item.activity}</td>
+                        <td data-label="Selesai" class="checkbox-container">
+                            <input type="checkbox" class="task-checkbox" id="${checkboxId}">
+                        </td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td data-label="Hari">${item.day}</td>
+                        <td data-label="Mata Pelajaran" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="subject">${item.subject}</td>
+                        <td data-label="Tingkat Kelas" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="grade">${item.grade}</td>
+                        <td data-label="Topik:" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="topic">${item.topic}</td>
+                        <td data-label="Catatan/Latihan" class="editable-cell" data-month="${uniqueIdPrefix}" data-index="${index}" data-field="notes">${item.notes}</td>
+                        <td data-label="Selesai" class="checkbox-container">
+                            <input type="checkbox" class="task-checkbox" id="${checkboxId}">
+                        </td>
+                    `;
+                }
                 tbody.appendChild(row);
             });
         }
@@ -529,14 +561,14 @@
             localStorage.setItem('savedScheduleData', JSON.stringify(currentScheduleData));
         }
 
-        // Fungsi untuk mengaktifkan editing sel
-        function makeCellEditable(cellElement, monthKey, index, field) {
-            const originalText = cellElement.textContent;
-            cellElement.innerHTML = ''; // Kosongkan sel
+        // Fungsi untuk mengaktifkan editing sel atau blok teks
+        function makeEditable(element, type, monthKey, index, field) {
+            const originalText = element.textContent;
+            element.innerHTML = ''; // Kosongkan elemen
 
             const textarea = document.createElement('textarea');
             textarea.value = originalText;
-            cellElement.appendChild(textarea);
+            element.appendChild(textarea);
             textarea.focus();
 
             // Auto-resize textarea
@@ -550,10 +582,15 @@
 
             const saveEdit = () => {
                 const newValue = textarea.value;
-                currentScheduleData[monthKey][index][field] = newValue;
-                cellElement.textContent = newValue;
-                saveAllScheduleData(); // Simpan perubahan ke Local Storage
-                cellElement.classList.add('editable-cell'); // Pastikan kelas tetap ada
+                if (type === 'cell') {
+                    currentScheduleData[monthKey][index][field] = newValue;
+                    saveAllScheduleData();
+                } else if (type === 'block') {
+                    motivationalTextContent = newValue;
+                    localStorage.setItem('motivationalText', newValue);
+                }
+                element.textContent = newValue;
+                element.classList.add(type === 'cell' ? 'editable-cell' : 'editable-text-block');
             };
 
             textarea.addEventListener('blur', saveEdit); // Simpan saat kehilangan fokus
@@ -595,7 +632,8 @@
             populateSchedule(currentScheduleData.month1, 'month1-schedule');
             populateSchedule(currentScheduleData.month2, 'month2-schedule');
             populateSchedule(currentScheduleData.month3, 'month3-schedule');
-            
+            populateSchedule(currentScheduleData.month4, 'month4-schedule'); // Populate month4 table
+
             // Muat status checkbox
             loadCheckboxState();
 
@@ -610,9 +648,18 @@
                     const monthKey = this.dataset.month;
                     const index = parseInt(this.dataset.index);
                     const field = this.dataset.field;
-                    makeCellEditable(this, monthKey, index, field);
+                    makeEditable(this, 'cell', monthKey, index, field);
                 });
             });
+
+            // Inisialisasi teks penyemangat yang bisa diedit
+            const motivationalTextElement = document.getElementById('motivational-text');
+            if (motivationalTextElement) {
+                motivationalTextElement.textContent = motivationalTextContent; // Set content from storage
+                motivationalTextElement.addEventListener('click', function() {
+                    makeEditable(this, 'block');
+                });
+            }
 
             // PWA: Registrasi Service Worker
             if ('serviceWorker' in navigator) {
